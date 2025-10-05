@@ -7,7 +7,7 @@ import ManagementSection from "./components/ManagementSection";
 import { Publication } from "./types/publication";
 
 export default async function Home() {
-  const res = await fetch(`${apiUrl}/api/blogs?populate=cover`);
+  const res = await fetch(`${apiUrl}/api/blogs?populate=cover&locale=ka`);
   const data = await res.json();
 
   if (data.data.length === 0) {
