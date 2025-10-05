@@ -4,6 +4,7 @@ import AboutSection from "./components/AboutSection";
 import ServicesSection from "./components/ServicesSection";
 import SubscribeSection from "./components/SubscribeSection";
 import ManagementSection from "./components/ManagementSection";
+import { Publication } from "./types/publication";
 
 export default async function Home() {
   const res = await fetch(`${apiUrl}/api/blogs?populate=cover`);
@@ -30,7 +31,7 @@ export default async function Home() {
         </a>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {publications.map((d: any) => (
+        {publications.map((d: Publication) => (
           <PublicationCard key={d.id} {...d} />
         ))}
       </div>

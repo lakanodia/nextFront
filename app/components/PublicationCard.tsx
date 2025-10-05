@@ -1,5 +1,5 @@
 import { FiDownload } from "react-icons/fi";
-
+import Image from "next/image";
 type Props = {
   id: number;
   title: string;
@@ -21,10 +21,12 @@ export default function PublicationCard({
     <div className="bg-white rounded-lg shadow border border-gray-200 flex flex-col">
       {/* Cover Image */}
       {cover && cover[0]?.url && (
-        <img
-          src={cover[0].url}
-          alt={title}
-          className="rounded-t-lg h-48 w-full object-cover"
+        <Image
+            src={cover[0].url}
+            alt={title}
+            width={400}
+            height={192}
+            className="rounded-t-lg h-48 w-full object-cover"
         />
       )}
       <div className="p-6 flex flex-col flex-1">
