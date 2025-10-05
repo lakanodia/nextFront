@@ -41,7 +41,7 @@ export default async function Home() {
               d.cover.map((c: { url: string }, index: number) => (
                 <a
                   key={index}
-                  href={`/api/download?url=${encodeURIComponent(c.url)}`}
+                  href={(c.url)}
                   download
                   target="_blank"
                   className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm font-medium"
