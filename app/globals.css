@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --card-background: #ffffff;
+  --card-text: #1f2937;
+  --card-text-secondary: #6b7280;
 }
 
 @theme inline {
@@ -16,6 +19,9 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --card-background: #111827;
+    --card-text: #f8fafc;
+    --card-text-secondary: #d1d5db;
   }
 }
 

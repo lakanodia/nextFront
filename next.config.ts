@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 import { apiUrl } from "./constants";
 
-
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const nextConfig: NextConfig = {
