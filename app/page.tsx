@@ -8,7 +8,7 @@ import { Publication } from "./types/publication";
 import Link from "next/link";
 
 export default async function Home() {
-  const res = await fetch(`${apiUrl}/api/blogs?populate=cover&locale=ka`);
+  const res = await fetch(`${apiUrl}/api/publications?populate=Pdf&populate=Cover`);
   const data = await res.json();
 
   if (data.data.length === 0) {

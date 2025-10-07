@@ -2,28 +2,26 @@ import { FiDownload } from "react-icons/fi";
 import Image from "next/image";
 type Props = {
   id: number;
-  title: string;
-  cover: { url: string }[];
+  Title: string;
+  Cover: { url: string };
   publishedAt?: string;
-  category?: string;
-  description?: string;
+  Description?: string;
 };
 
 export default function PublicationCard({
   id,
-  title,
-  cover,
+  Title,
+  Cover,
   publishedAt,
-  category,
-  description,
+  Description,
 }: Props) {
   return (
     <div className="bg-white rounded-lg shadow border border-gray-200 flex flex-col">
       {/* Cover Image */}
-      {cover && cover[0]?.url && (
+      {Cover.url && (
         <Image
-            src={cover[0].url}
-            alt={title}
+            src={Cover.url}
+            alt={Title }
             width={400}
             height={192}
             className="rounded-t-lg h-48 w-full object-cover"
@@ -33,8 +31,8 @@ export default function PublicationCard({
         <span className="text-gray-400 text-sm mb-2">
           {publishedAt ? new Date(publishedAt).toLocaleDateString() : ""}
         </span>
-        <h2 className="text-2xl font-bold text-[#23313b] mb-2">{title}</h2>
-        <p className="text-gray-700 mb-4">{typeof description === 'string' ? description : (description != null ? String(description) : '')}</p>
+        <h2 className="text-2xl font-bold text-[#23313b] mb-2">{Title}</h2>
+        <p className="text-gray-700 mb-4">{typeof Description === 'string' ? Description : (Description != null ? String(Description) : '')}</p>
         <a
           href={`/publications/${id}`}
           className="text-green-700 font-semibold flex items-center gap-2 hover:underline mb-4"
@@ -43,9 +41,9 @@ export default function PublicationCard({
         </a>
         <div className="mt-auto flex items-center gap-2">
           <span className="text-gray-500 text-sm">Or download:</span>
-          {cover && cover[1]?.url && (
+          {Cover && Cover.url && (
             <a
-                href={cover[1].url}
+                href={Cover.url}
                 className="inline-flex items-center gap-2 text-gray-700 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm font-medium"
                 download
                 target="_blank"
