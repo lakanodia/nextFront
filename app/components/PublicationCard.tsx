@@ -2,26 +2,28 @@ import { FiDownload } from "react-icons/fi";
 import Image from "next/image";
 type Props = {
   id: number;
-  Title: string;
-  Cover: { url: string };
+  title: string;
+  pdf: { url: string };
+  cover: { url: string };
   publishedAt?: string;
-  Description?: string;
+  description?: string;
 };
 
 export default function PublicationCard({
   id,
-  Title,
-  Cover,
+  title,
+  pdf,
+  cover,
   publishedAt,
-  Description,
+  description,
 }: Props) {
   return (
-    <div className="bg-white rounded-lg shadow border border-gray-200 flex flex-col">
+    <div className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-200 flex flex-col">
       {/* Cover Image */}
-      {Cover.url && (
+      {cover.url && (
         <Image
-            src={Cover.url}
-            alt={Title }
+            src={cover.url}
+            alt={title}
             width={400}
             height={192}
             className="rounded-t-lg h-48 w-full object-cover"
@@ -31,8 +33,8 @@ export default function PublicationCard({
         <span className="text-gray-400 text-sm mb-2">
           {publishedAt ? new Date(publishedAt).toLocaleDateString() : ""}
         </span>
-        <h2 className="text-2xl font-bold text-[#23313b] mb-2">{Title}</h2>
-        <p className="text-gray-700 mb-4">{typeof Description === 'string' ? Description : (Description != null ? String(Description) : '')}</p>
+        <h2 className="text-2xl font-bold text-[#23313b] mb-2">{title}</h2>
+        <p className="text-gray-700 mb-4">{typeof description === 'string' ? description : (description != null ? String(description) : '')}</p>
         <a
           href={`/publications/${id}`}
           className="text-green-700 font-semibold flex items-center gap-2 hover:underline mb-4"
@@ -41,10 +43,10 @@ export default function PublicationCard({
         </a>
         <div className="mt-auto flex items-center gap-2">
           <span className="text-gray-500 text-sm">Or download:</span>
-          {Cover && Cover.url && (
+          {pdf && pdf.url && (
             <a
-                href={Cover.url}
-                className="inline-flex items-center gap-2 text-gray-700 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition text-sm font-medium"
+                href={pdf.url}
+                 className="inline-flex items-center gap-2 text-gray-100 bg-[#23313b]/45 px-4 py-2 rounded hover:bg-[#23313b]/80 transition-colors duration-300 text-sm font-medium"
                 download
                 target="_blank"
             >

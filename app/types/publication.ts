@@ -1,7 +1,8 @@
 export type Publication = {
   id: number;
-  Title: string;
-  Cover: { url: string };
+  title: string;
+  pdf: { url: string };
+  cover: { url: string };
   publishedAt?: string;
-  Description?: string;
+  description?: string;
 };

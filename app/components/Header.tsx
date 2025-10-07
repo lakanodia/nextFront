@@ -14,7 +14,7 @@ export default function Header() {
     // თუ "/"-ზე ხარ, უბრალოდ anchor იმუშავებს
   }
   return (
-    <header className="w-full bg-[#23313b] h-20 font-sans">
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#23313b]/90 h-20 font-sans shadow-lg backdrop-blur-md">
       <div className="max-w-7xl mx-auto flex items-center px-6 h-full">
         {/* Logo */}
         <div className="flex items-center gap-2">

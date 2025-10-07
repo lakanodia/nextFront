@@ -3,7 +3,7 @@ import PublicationCard from "../components/PublicationCard";
 import { Publication } from "../types/publication";
 
 export default async function PublicationsPage() {
-  const res = await fetch(`${apiUrl}/api/publications?populate=Pdf&populate=Cover`);
+  const res = await fetch(`${apiUrl}/api/publications?populate=pdf&populate=cover`);
   const data = await res.json();
 
   if (data.data.length === 0) {
