@@ -17,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       API_URL: ${{ secrets.API_URL }}
+      GITHUB_ACTIONS: true
+      GITHUB_REPOSITORY: ${{ github.repository }}
+
     steps:
       - uses: actions/checkout@v4
 
