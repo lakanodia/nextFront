@@ -34,7 +34,7 @@ export default function PublicationCard({
           {publishedAt ? new Date(publishedAt).toLocaleDateString() : ""}
         </span>
         <h2 className="text-2xl font-bold text-[#23313b] mb-2">{title}</h2>
-        <p className="text-gray-700 mb-4">{description || ""}</p>
+        <p className="text-gray-700 mb-4">{typeof description === 'string' ? description : (description != null ? String(description) : '')}</p>
         <a
           href={`/publications/${id}`}
           className="text-green-700 font-semibold flex items-center gap-2 hover:underline mb-4"
