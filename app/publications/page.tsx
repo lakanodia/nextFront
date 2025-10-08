@@ -1,4 +1,3 @@
-import { apiUrl } from "@/constants";
 import PublicationCard from "../components/PublicationCard";
 import { PublicationType } from "../types/publication";
 import { listPublications } from "@/lib/publications";

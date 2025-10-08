@@ -13,11 +13,11 @@ export default async function SinglePublicationPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const publicationData = await getPublication(slug);
+  const publicationData = await getPublication(slug, "en");
 
   return (
     <PublicationCard
-      key={1}
+      key={publicationData.slug}
       slug={publicationData.slug}
       contentHtml={publicationData.contentHtml}
       title={publicationData.title}
