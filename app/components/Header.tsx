@@ -22,7 +22,7 @@ export default function Header() {
         {/* Logo */}
         <div className="flex items-center gap-2">
           <Image
-            src="/vercel.svg"
+            src="vercel.svg"
             alt="Logo"
             width={32}
             height={32}
