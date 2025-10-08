@@ -82,11 +82,9 @@ function sortByDateDesc(a: PublicationType, b: PublicationType) {
   return bd - ad;
 }
 
-// --- public API ------------------------------------------------------------
+// --- Internal API ------------------------------------------------------------
 
-export async function getAllPublications(
-  locale = "en"
-): Promise<PublicationType[]> {
+async function getAllPublications(locale = "en"): Promise<PublicationType[]> {
   const fileMap = await buildFileMap(locale);
   const items = await Promise.all(
     Array.from(fileMap, ([slug, fullPath]) => parseMarkdown(fullPath, slug))
@@ -95,7 +93,12 @@ export async function getAllPublications(
   return items;
 }
 
-export async function getPublicationData(
+export async function getAllPublicationSlugs(locale = "en"): Promise<string[]> {
+  const items = await getAllPublications(locale);
+  return items.map((item) => item.slug);
+}
+
+async function getPublicationData(
   slug: string,
   locale = "en"
 ): Promise<PublicationType> {
@@ -105,3 +108,11 @@ export async function getPublicationData(
   // This will throw if the file truly doesn't exist, which is good for SSG errors
   return parseMarkdown(fullPath, slug);
 }
+
+// ---- Public API ------------------------------------------------------------
+
+export const markdownSource = {
+  listSlug: getAllPublicationSlugs,
+  list: getAllPublications,
+  get: getPublicationData,
+};

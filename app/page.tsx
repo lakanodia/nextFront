@@ -8,11 +8,11 @@ import { PublicationType } from "./types/publication";
 import Link from "next/link";
 import { FiArrowDown } from "react-icons/fi";
 import Image from "next/image";
-import { getAllPublications } from "@/lib/publications";
+import { listPublications } from "@/lib/publications";
 
 export default async function Home() {
   // მხოლოდ 3 პუბლიკაცია
-  const publications = (await getAllPublications("en")).slice(0, 3);
+  const publications = (await listPublications("en")).slice(0, 3);
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 mt-10 font-sans">

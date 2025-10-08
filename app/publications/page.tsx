@@ -1,10 +1,10 @@
 import { apiUrl } from "@/constants";
 import PublicationCard from "../components/PublicationCard";
 import { PublicationType } from "../types/publication";
-import { getAllPublications } from "@/lib/publications";
+import { listPublications } from "@/lib/publications";
 
 export default async function PublicationListPage() {
-  const publications = await getAllPublications("en");
+  const publications = await listPublications("en");
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-4">

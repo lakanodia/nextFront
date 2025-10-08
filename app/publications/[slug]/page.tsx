@@ -1,8 +1,10 @@
 import PublicationCard from "@/app/components/PublicationCard";
-import { getPublicationData as getPublicationData } from "@/lib/publications";
+import { getPublication, listPublicationSlugs } from "@/lib/publications";
 
 export function generateStaticParams() {
-  return [{ slug: "bonds" }, { slug: "fixed-income" }];
+  return listPublicationSlugs().then((slugs) =>
+    slugs.map((slug) => ({ slug }))
+  );
 }
 
 export default async function SinglePublicationPage({
@@ -11,7 +13,7 @@ export default async function SinglePublicationPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const publicationData = await getPublicationData(slug);
+  const publicationData = await getPublication(slug);
 
   return (
     <PublicationCard

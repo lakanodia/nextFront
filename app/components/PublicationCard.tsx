@@ -11,11 +11,6 @@ export default function PublicationCard({
   publishedAt,
   description,
 }: PublicationType) {
-  console.log("PublicationCard:", {
-    title,
-    description,
-  });
-
   return (
     <div className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-200 flex flex-col">
       {/* Cover Image */}
