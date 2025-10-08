@@ -12,7 +12,6 @@ type PublicationsPort = {
 
 // Pick adapter based on env (or any logic you like)
 const pickAdapter = (): PublicationsPort => {
-  console.log("DATA_BACKEND:", process.env.DATA_BACKEND);
   switch (process.env.DATA_BACKEND) {
     case "markdown":
       return markdownSource;
