@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "cms": "npx decap-server",
     "build": "rimraf .next out && next build --turbopack",
     "start": "next start",
     "lint": "eslint",

@@ -4,23 +4,15 @@ import AboutSection from "./components/AboutSection";
 import ServicesSection from "./components/ServicesSection";
 import SubscribeSection from "./components/SubscribeSection";
 import ManagementSection from "./components/ManagementSection";
-import { Publication } from "./types/publication";
+import { PublicationType } from "./types/publication";
 import Link from "next/link";
 import { FiArrowDown } from "react-icons/fi";
 import Image from "next/image";
+import { getAllPublications } from "@/lib/publications";
 
 export default async function Home() {
-  const res = await fetch(
-    `${apiUrl}/api/publications?populate=pdf&populate=cover`
-  );
-  const data = await res.json();
-
-  if (data.data.length === 0) {
-    return <div>No articles found</div>;
-  }
-
   // მხოლოდ 3 პუბლიკაცია
-  const publications = data.data.slice(0, 3);
+  const publications = (await getAllPublications("en")).slice(0, 3);
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 mt-10 font-sans">
@@ -61,11 +53,19 @@ export default async function Home() {
         </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {publications.map((d: Publication) => (
-          <PublicationCard key={d.id} {...d} />
+        {publications.map((p: PublicationType) => (
+          <PublicationCard
+            key={p.slug}
+            slug={p.slug}
+            contentHtml={p.contentHtml}
+            title={p.title}
+            pdf_url={p.pdf_url}
+            cover_photo={p.cover_photo}
+            publishedAt={p.publishedAt}
+            description={p.description}
+          />
         ))}
       </div>
-
       <ManagementSection />
       <SubscribeSection />
     </div>
