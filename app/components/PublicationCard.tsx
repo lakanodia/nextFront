@@ -1,7 +1,7 @@
 import { FiDownload } from "react-icons/fi";
 import Image from "next/image";
 type Props = {
-  id: number;
+  id: string;
   title: string;
   pdf: { url: string };
   cover: { url: string };
@@ -22,11 +22,11 @@ export default function PublicationCard({
       {/* Cover Image */}
       {cover.url && (
         <Image
-            src={cover.url}
-            alt={title}
-            width={400}
-            height={192}
-            className="rounded-t-lg h-48 w-full object-cover"
+          src={cover.url}
+          alt={title}
+          width={400}
+          height={192}
+          className="rounded-t-lg h-48 w-full object-cover"
         />
       )}
       <div className="p-6 flex flex-col flex-1">
@@ -34,7 +34,13 @@ export default function PublicationCard({
           {publishedAt ? new Date(publishedAt).toLocaleDateString() : ""}
         </span>
         <h2 className="text-2xl font-bold text-[#23313b] mb-2">{title}</h2>
-        <p className="text-gray-700 mb-4">{typeof description === 'string' ? description : (description != null ? String(description) : '')}</p>
+        <p className="text-gray-700 mb-4">
+          {typeof description === "string"
+            ? description
+            : description != null
+            ? String(description)
+            : ""}
+        </p>
         <a
           href={`/publications/${id}`}
           className="text-green-700 font-semibold flex items-center gap-2 hover:underline mb-4"
@@ -45,13 +51,12 @@ export default function PublicationCard({
           <span className="text-gray-500 text-sm">Or download:</span>
           {pdf && pdf.url && (
             <a
-                href={pdf.url}
-                 className="inline-flex items-center gap-2 text-gray-100 bg-[#23313b]/45 px-4 py-2 rounded hover:bg-[#23313b]/80 transition-colors duration-300 text-sm font-medium"
-                download
-                target="_blank"
+              href={pdf.url}
+              className="inline-flex items-center gap-2 text-gray-100 bg-[#23313b]/45 px-4 py-2 rounded hover:bg-[#23313b]/80 transition-colors duration-300 text-sm font-medium"
+              download
+              target="_blank"
             >
-                <FiDownload className="text-lg" />
-                
+              <FiDownload className="text-lg" />
             </a>
           )}
         </div>
