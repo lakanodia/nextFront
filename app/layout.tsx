@@ -1,7 +1,11 @@
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +22,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (pathname === "/") {
+      const defaultLocale = "en";
+      const supportedLocales = ["en", "ru"];
+      const currentLocale = pathname.split("/")[1];
+
+      if (!supportedLocales.includes(currentLocale)) {
+        router.replace(`/${defaultLocale}`);
+      }
+    }
+  }, [pathname, router]);
+
+  const locale = pathname.split("/")[1] || "en";
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
+        <Header locale={locale} />
         {children}
         <Footer />
       </body>

@@ -1,21 +1,19 @@
-"use client";
 import { FaGlobe } from "react-icons/fa";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-export default function Header() {
-  const pathname = usePathname();
+
+export default function Header({ locale }: { locale: string }) {
   const router = useRouter();
+
   function handleSectionClick(
     e: React.MouseEvent<HTMLAnchorElement>,
     section: string
   ) {
-    if (pathname !== "/") {
-      e.preventDefault();
-      router.push(`/#${section}`);
-    }
-    // თუ "/"-ზე ხარ, უბრალოდ anchor იმუშავებს
+    e.preventDefault();
+    router.push(`/${locale}/#${section}`);
   }
+
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-[#23313b]/90 h-20 font-sans shadow-lg backdrop-blur-md">
       <div className="max-w-7xl mx-auto flex items-center px-6 h-full">
@@ -35,13 +33,13 @@ export default function Header() {
         {/* Menu */}
         <nav className="flex gap-8 ml-auto">
           <Link
-            href="/"
+            href={`/${locale}/`}
             className="text-white text-base font-medium hover:text-blue-300 transition"
           >
             Home
           </Link>
           <Link
-            href="#about"
+            href={`/${locale}/#about`}
             className="text-white text-base font-medium hover:text-blue-300 transition"
             onClick={(e) => handleSectionClick(e, "about")}
           >
@@ -62,7 +60,7 @@ export default function Header() {
             Management
           </Link>
           <Link
-            href="/publications"
+            href={`/${locale}/publications`}
             className="text-white text-base font-medium hover:text-blue-300 transition"
           >
             Publications

@@ -10,7 +10,8 @@ export default function PublicationCard({
   cover_photo,
   publishedAt,
   description,
-}: PublicationType) {
+  locale,
+}: PublicationType & { locale: string }) {
   return (
     <div className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-200 flex flex-col">
       {/* Cover Image */}
@@ -30,7 +31,7 @@ export default function PublicationCard({
         <h2 className="text-2xl font-bold text-[#23313b] mb-2">{title}</h2>
         <p className="text-gray-700 mb-4">{description}</p>
         <a
-          href={`/publications/${slug}`}
+          href={`/${locale}/publications/${slug}`}
           className="text-green-700 font-semibold flex items-center gap-2 hover:underline mb-4"
         >
           Learn more <span className="text-lg">&#8594;</span>

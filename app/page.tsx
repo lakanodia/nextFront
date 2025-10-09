@@ -10,9 +10,10 @@ import { FiArrowDown } from "react-icons/fi";
 import Image from "next/image";
 import { listPublications } from "@/lib/publications";
 
-export default async function Home() {
+export default async function Home({ params }: { params: { locale: string } }) {
+  const { locale } = params;
   // მხოლოდ 3 პუბლიკაცია
-  const publications = (await listPublications("en")).slice(0, 3);
+  const publications = (await listPublications(locale)).slice(0, 3);
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 mt-10 font-sans">
@@ -63,6 +64,7 @@ export default async function Home() {
             cover_photo={p.cover_photo}
             publishedAt={p.publishedAt}
             description={p.description}
+            locale={locale}
           />
         ))}
       </div>
