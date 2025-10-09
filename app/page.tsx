@@ -47,7 +47,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-4xl font-bold text-[#23313b]">Reports</h1>
         <Link
-          href="/publications"
+          href={`/${locale}/publications/`}
           className="text-green-600 font-semibold text-lg flex items-center gap-2 hover:underline"
         >
           View more <span className="text-xl">&#8594;</span>

@@ -28,19 +28,7 @@ const nextConfig: NextConfig = {
         source: "/publications",
         destination: "/en/publications",
         permanent: false,
-      },
-      {
-        source: "/publications/:slug*",
-        has: [
-          {
-            type: "header",
-            key: "x-locale",
-            value: "(?!en|ru).*",
-          },
-        ],
-        destination: "/en/publications/:slug*",
-        permanent: false,
-      },
+      },      
     ];
   },
 };
