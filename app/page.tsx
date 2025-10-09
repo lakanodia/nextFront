@@ -1,4 +1,3 @@
-import { apiUrl } from "@/constants";
 import PublicationCard from "./components/PublicationCard";
 import AboutSection from "./components/AboutSection";
 import ServicesSection from "./components/ServicesSection";
