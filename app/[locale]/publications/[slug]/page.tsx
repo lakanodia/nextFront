@@ -18,7 +18,7 @@ export function generateStaticParams() {
 export default async function SinglePublicationPage({
   params,
 }: {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
   const publicationData = await getPublication(slug, locale);
