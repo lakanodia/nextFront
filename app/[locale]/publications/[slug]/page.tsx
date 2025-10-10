@@ -8,10 +8,8 @@ export function generateStaticParams() {
       slugs.map((slug) => ({ locale, slug }))
     );
 
-    // Add paths without a locale, defaulting to "en"
-    const defaultLocalePaths = slugs.map((slug) => ({ locale: "en", slug }));
-
-    return [...paths, ...defaultLocalePaths];
+    // No need to add defaultLocalePaths, as "en" is already included in paths
+    return paths;
   });
 }
 
