@@ -10,7 +10,7 @@ import Image from "next/image";
 import { listPublications } from "@/lib/publications";
 
 export default async function Home({ params }: { params: { locale: string } }) {
-  const { locale } = params;
+  const { locale } = await params;
   // მხოლოდ 3 პუბლიკაცია
   const publications = (await listPublications(locale)).slice(0, 3);
 

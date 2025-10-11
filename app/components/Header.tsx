@@ -1,4 +1,3 @@
-import { FaGlobe } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,7 +18,6 @@ export default function Header({ locale }: { locale: string }) {
     const currentPath = window.location.pathname.replace(`/${locale}`, "");
     router.push(`/${newLocale}${currentPath}`);
   }
-
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-[#23313b]/90 h-20 font-sans shadow-lg backdrop-blur-md">
       <div className="max-w-7xl mx-auto flex items-center px-6 h-full">
