@@ -1,9 +1,18 @@
-import PublicationCard from "../components/PublicationCard";
-import { PublicationType } from "../types/publication";
+import PublicationCard from "../../components/PublicationCard";
+import { PublicationType } from "../../types/publication";
 import { listPublications } from "@/lib/publications";
 
-export default async function PublicationListPage() {
-  const publications = await listPublications("en");
+export function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "ru" }];
+}
+
+export default async function PublicationListPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const publications = await listPublications(locale);
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-4">
@@ -21,6 +30,7 @@ export default async function PublicationListPage() {
             cover_photo={p.cover_photo}
             publishedAt={p.publishedAt}
             description={p.description}
+            locale={locale}
           />
         ))}
       </div>

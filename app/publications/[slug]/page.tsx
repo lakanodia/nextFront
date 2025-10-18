@@ -1,30 +1,13 @@
-import PublicationCard from "@/app/components/PublicationCard";
-import { getPublication, listPublicationSlugs } from "@/lib/publications";
+import { listPublicationSlugs } from "@/lib/publications";
+import RedirectToDefaultLocale from "./redirect";
 
-export function generateStaticParams() {
-  return listPublicationSlugs().then((slugs) =>
-    slugs.map((slug) => ({ slug }))
-  );
+export default function Page({ params }: { params: { slug: string } }) {
+  return <RedirectToDefaultLocale slug={params.slug} />;
 }
 
-export default async function SinglePublicationPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const publicationData = await getPublication(slug, "en");
+export async function generateStaticParams() {
+  // Define slugs for static export
+  const slugs = await listPublicationSlugs();
 
-  return (
-    <PublicationCard
-      key={publicationData.slug}
-      slug={publicationData.slug}
-      contentHtml={publicationData.contentHtml}
-      title={publicationData.title}
-      pdf_url={publicationData.pdf_url}
-      cover_photo={publicationData.cover_photo}
-      publishedAt={publicationData.publishedAt}
-      description={publicationData.description}
-    />
-  );
+  return slugs.map((slug) => ({ slug }));
 }

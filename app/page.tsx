@@ -1,4 +1,3 @@
-import { apiUrl } from "@/constants";
 import PublicationCard from "./components/PublicationCard";
 import AboutSection from "./components/AboutSection";
 import ServicesSection from "./components/ServicesSection";
@@ -10,9 +9,10 @@ import { FiArrowDown } from "react-icons/fi";
 import Image from "next/image";
 import { listPublications } from "@/lib/publications";
 
-export default async function Home() {
+export default async function Home({ params }: { params: { locale: string } }) {
+  const { locale } = await params;
   // მხოლოდ 3 პუბლიკაცია
-  const publications = (await listPublications("en")).slice(0, 3);
+  const publications = (await listPublications(locale)).slice(0, 3);
 
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 mt-10 font-sans">
@@ -46,7 +46,7 @@ export default async function Home() {
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-4xl font-bold text-[#23313b]">Reports</h1>
         <Link
-          href="/publications"
+          href={`/${locale}/publications/`}
           className="text-green-600 font-semibold text-lg flex items-center gap-2 hover:underline"
         >
           View more <span className="text-xl">&#8594;</span>
@@ -63,6 +63,7 @@ export default async function Home() {
             cover_photo={p.cover_photo}
             publishedAt={p.publishedAt}
             description={p.description}
+            locale={locale}
           />
         ))}
       </div>

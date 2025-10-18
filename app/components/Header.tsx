@@ -1,20 +1,22 @@
-"use client";
-import { FaGlobe } from "react-icons/fa";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-export default function Header() {
-  const pathname = usePathname();
+
+export default function Header({ locale }: { locale: string }) {
   const router = useRouter();
+
   function handleSectionClick(
     e: React.MouseEvent<HTMLAnchorElement>,
     section: string
   ) {
-    if (pathname !== "/") {
-      e.preventDefault();
-      router.push(`/#${section}`);
-    }
-    // თუ "/"-ზე ხარ, უბრალოდ anchor იმუშავებს
+    e.preventDefault();
+    router.push(`/${locale}/#${section}`);
+  }
+
+  function toggleLocale() {
+    const newLocale = locale === "en" ? "ru" : "en";
+    const currentPath = window.location.pathname.replace(`/${locale}`, "");
+    router.push(`/${newLocale}${currentPath}`);
   }
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-[#23313b]/90 h-20 font-sans shadow-lg backdrop-blur-md">
@@ -35,13 +37,13 @@ export default function Header() {
         {/* Menu */}
         <nav className="flex gap-8 ml-auto">
           <Link
-            href="/"
+            href={`/${locale}/`}
             className="text-white text-base font-medium hover:text-blue-300 transition"
           >
             Home
           </Link>
           <Link
-            href="#about"
+            href={`/${locale}/#about`}
             className="text-white text-base font-medium hover:text-blue-300 transition"
             onClick={(e) => handleSectionClick(e, "about")}
           >
@@ -62,7 +64,7 @@ export default function Header() {
             Management
           </Link>
           <Link
-            href="/publications"
+            href={`/${locale}/publications`}
             className="text-white text-base font-medium hover:text-blue-300 transition"
           >
             Publications
@@ -75,14 +77,14 @@ export default function Header() {
             Subscribe
           </Link>
         </nav>
-        {/* Language */}
+        {/* Language Switcher */}
         <div className="flex items-center gap-2 ml-8 text-white">
-          <FaGlobe />
-          <select className="bg-[#23313b] text-white border border-gray-500 rounded px-2 py-1">
-            <option value="en">EN</option>
-            <option value="geo">GEO</option>
-            <option value="ru">RU</option>
-          </select>
+          <button
+            onClick={toggleLocale}
+            className="bg-[#23313b] text-white border border-gray-500 rounded px-4 py-2 hover:bg-[#23313b]/80 transition-colors duration-300"
+          >
+            {locale === "en" ? "RU" : "EN"}
+          </button>
         </div>
       </div>
     </header>
